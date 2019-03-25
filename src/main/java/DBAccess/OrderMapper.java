@@ -35,6 +35,29 @@ public class OrderMapper {
             ex.printStackTrace();
         }
     }
+    
+    public static List<Order> getAllOrders() throws SQLException, ClassNotFoundException{
+        List<Order> orders = new ArrayList();
+        try{
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM Orders;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Order order = new Order(
+                        rs.getInt("userID"), 
+                        rs.getInt("length"), 
+                        rs.getInt("width"), 
+                        rs.getInt("height"));
+                order.setId(rs.getInt("orderID"));
+                orders.add(order);
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return orders;
+    }
 
     public static List<Order> getOrderByUserID(int userID) throws ClassNotFoundException, SQLException {
         List<Order> orders = new ArrayList();

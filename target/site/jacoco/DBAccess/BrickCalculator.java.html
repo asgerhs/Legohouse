@@ -16,35 +16,32 @@ public static HashMap&lt;String, Integer&gt; calcBricks(Order order) {
 <span class="nc" id="L16">     int small = 0;</span>
 <span class="nc" id="L17">     int medium = 0;</span>
 <span class="nc" id="L18">     int large = 0;</span>
-<span class="nc" id="L19">     int remain = 0;</span>
 
-<span class="nc" id="L21">     large = (order.getLength() - 2) / 4;</span>
-<span class="nc" id="L22">     remain = (order.getLength() - 2) % 4;</span>
-<span class="nc" id="L23">     medium = remain / 2;</span>
-<span class="nc" id="L24">     small = remain % 2;</span>
+<span class="nc" id="L20">     large = order.getLength()  / 4;</span>
+<span class="nc" id="L21">     medium = (order.getLength() % 4) / 2;</span>
+<span class="nc" id="L22">     small = (order.getLength() % 4) % 2;</span>
 
-<span class="nc" id="L26">     large += (order.getWidth() - 2) / 4;</span>
-<span class="nc" id="L27">     remain = (order.getWidth() - 2) % 4;</span>
-<span class="nc" id="L28">     medium += remain / 2;</span>
-<span class="nc" id="L29">     small += remain % 2;</span>
+<span class="nc" id="L24">     large += (order.getWidth() - 4) / 4;</span>
+<span class="nc" id="L25">     medium += ((order.getWidth() - 4) % 4) / 2;</span>
+<span class="nc" id="L26">     small += ((order.getWidth() - 4) % 4) % 2;</span>
 
-<span class="nc" id="L31">     large *= order.getHeight();</span>
-<span class="nc" id="L32">     medium *= order.getHeight();</span>
-<span class="nc" id="L33">     small *= order.getHeight();</span>
+<span class="nc" id="L28">     large *= order.getHeight();</span>
+<span class="nc" id="L29">     medium *= order.getHeight();</span>
+<span class="nc" id="L30">     small *= order.getHeight();</span>
 
-<span class="nc" id="L35">     bricks.put(&quot;2x4&quot;, large*2);</span>
-<span class="nc" id="L36">     bricks.put(&quot;2x2&quot;, medium*2);</span>
-<span class="nc" id="L37">     bricks.put(&quot;2x1&quot;, small*2);</span>
+<span class="nc" id="L32">     bricks.put(&quot;2x4&quot;, large*2);</span>
+<span class="nc" id="L33">     bricks.put(&quot;2x2&quot;, medium*2);</span>
+<span class="nc" id="L34">     bricks.put(&quot;2x1&quot;, small*2);</span>
      
-<span class="nc" id="L39">     System.out.println(bricks.keySet().toString() + bricks.values().toString());</span>
-<span class="nc" id="L40">     return bricks;</span>
+<span class="nc" id="L36">     System.out.println(bricks.keySet().toString() + bricks.values().toString());</span>
+<span class="nc" id="L37">     return bricks;</span>
  }
 
     public static void main(String[] args) {
-<span class="nc" id="L44">        Order order = new Order(1,8,8,1);</span>
-<span class="nc" id="L45">        BrickCalculator.calcBricks(order);</span>
+<span class="nc" id="L41">        Order order = new Order(1,8,8,1);</span>
+<span class="nc" id="L42">        BrickCalculator.calcBricks(order);</span>
         
-<span class="nc" id="L47">    }</span>
+<span class="nc" id="L44">    }</span>
 
     
       

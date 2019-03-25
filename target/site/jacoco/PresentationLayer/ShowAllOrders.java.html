@@ -19,21 +19,22 @@ import javax.servlet.http.HttpSession;
  */
 <span class="nc" id="L20">public class ShowAllOrders extends Command {</span>
     
-<span class="nc" id="L22">    LogicFacade fc = new LogicFacade();</span>
+    
     
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-<span class="nc" id="L26">        HttpSession session = request.getSession();</span>
-<span class="nc" id="L27">        User user = (User) session.getAttribute(&quot;user&quot;);</span>
-<span class="nc" id="L28">        List&lt;Order&gt; orders = new ArrayList();</span>
+<span class="nc" id="L26">        LogicFacade fc = new LogicFacade();</span>
+<span class="nc" id="L27">        HttpSession session = request.getSession();</span>
+<span class="nc" id="L28">        User user = (User) session.getAttribute(&quot;user&quot;);</span>
+<span class="nc" id="L29">        List&lt;Order&gt; orders = new ArrayList();</span>
         
         try{
-<span class="nc" id="L31">            fc.getOrderByUserID(user.getId());</span>
-<span class="nc" id="L32">            session.setAttribute(&quot;orders&quot;, orders);</span>
-<span class="nc" id="L33">        } catch (ClassNotFoundException | SQLException ex) {</span>
-<span class="nc" id="L34">            ex.printStackTrace();</span>
-<span class="nc" id="L35">        } </span>
-<span class="nc" id="L36">        return &quot;customerpage&quot;;</span>
+<span class="nc" id="L32">            fc.getOrderByUserID(user.getId());</span>
+<span class="nc" id="L33">            session.setAttribute(&quot;orders&quot;, orders);</span>
+<span class="nc" id="L34">        } catch (ClassNotFoundException | SQLException ex) {</span>
+<span class="nc" id="L35">            ex.printStackTrace();</span>
+<span class="nc" id="L36">        } </span>
+<span class="nc" id="L37">        return &quot;customerpage&quot;;</span>
     }
     
     

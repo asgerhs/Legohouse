@@ -10,8 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <% Order order = (Order) session.getAttribute("order"); %>
-<% BrickCalculator calc = new BrickCalculator(); %>
-<% HashMap hm = calc.calcBricks(order); %>
+<% HashMap<String, Integer> hm = (HashMap<String, Integer>) session.getAttribute("bricks"); %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

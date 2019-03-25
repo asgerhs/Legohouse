@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateOrder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LogInSample</a> &gt; <a href="index.source.html" class="el_package">PresentationLayer</a> &gt; <span class="el_source">CreateOrder.java</span></div><h1>CreateOrder.java</h1><pre class="source lang-java linenums">package PresentationLayer;
 
+import DBAccess.BrickCalculator;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import DBAccess.Order;
 import DBAccess.User;
+import java.sql.SQLException;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -14,23 +17,29 @@ import javax.servlet.http.HttpSession;
  *
  * @author Asger Hermind Sørensen
  */
-<span class="nc" id="L17">public class CreateOrder extends Command {</span>
+<span class="nc" id="L20">public class CreateOrder extends Command {</span>
 
+    
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-<span class="nc" id="L21">        HttpSession session = request.getSession();</span>
-<span class="nc" id="L22">        User user = (User) session.getAttribute(&quot;user&quot;);</span>
-<span class="nc" id="L23">        int length = Integer.parseInt(request.getParameter(&quot;length&quot;));</span>
-<span class="nc" id="L24">        int width = Integer.parseInt(request.getParameter(&quot;width&quot;));</span>
-<span class="nc" id="L25">        int height = Integer.parseInt(request.getParameter(&quot;height&quot;));</span>
-        
+<span class="nc" id="L25">        HttpSession session = request.getSession();</span>
+<span class="nc" id="L26">        LogicFacade lf = new LogicFacade();</span>
+<span class="nc" id="L27">        User user = (User) session.getAttribute(&quot;user&quot;);</span>
+<span class="nc" id="L28">        int length = Integer.parseInt(request.getParameter(&quot;length&quot;));</span>
+<span class="nc" id="L29">        int width = Integer.parseInt(request.getParameter(&quot;width&quot;));</span>
+<span class="nc" id="L30">        int height = Integer.parseInt(request.getParameter(&quot;height&quot;));</span>
+
         try {
-<span class="nc" id="L28">            Order order = LogicFacade.createOrder(user.getId(), length, width, height);</span>
-<span class="nc" id="L29">            session.setAttribute(&quot;order&quot;, order);</span>
-<span class="nc" id="L30">        } catch (ClassNotFoundException ex) {</span>
-<span class="nc" id="L31">            ex.printStackTrace();</span>
-<span class="nc" id="L32">        }</span>
-<span class="nc" id="L33">        return &quot;ShowOrderLine&quot;;</span>
+<span class="nc" id="L33">            Order order = LogicFacade.createOrder(user.getId(), length, width, height);</span>
+<span class="nc" id="L34">            session.setAttribute(&quot;order&quot;, order);</span>
+            
+<span class="nc" id="L36">            Map&lt;String, Integer&gt; bricks = new BrickCalculator().calcBricks(order);</span>
+<span class="nc" id="L37">            session.setAttribute(&quot;order&quot;, order);</span>
+<span class="nc" id="L38">            session.setAttribute(&quot;bricks&quot;, bricks);</span>
+<span class="nc" id="L39">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L40">            ex.printStackTrace();</span>
+<span class="nc" id="L41">        } </span>
+<span class="nc" id="L42">        return &quot;ShowOrderLine&quot;;</span>
     }
 
 }

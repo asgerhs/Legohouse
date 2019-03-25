@@ -16,17 +16,14 @@ public static HashMap<String, Integer> calcBricks(Order order) {
      int small = 0;
      int medium = 0;
      int large = 0;
-     int remain = 0;
 
-     large = (order.getLength() - 2) / 4;
-     remain = (order.getLength() - 2) % 4;
-     medium = remain / 2;
-     small = remain % 2;
+     large = order.getLength()  / 4;
+     medium = (order.getLength() % 4) / 2;
+     small = (order.getLength() % 4) % 2;
 
-     large += (order.getWidth() - 2) / 4;
-     remain = (order.getWidth() - 2) % 4;
-     medium += remain / 2;
-     small += remain % 2;
+     large += (order.getWidth() - 4) / 4;
+     medium += ((order.getWidth() - 4) % 4) / 2;
+     small += ((order.getWidth() - 4) % 4) % 2;
 
      large *= order.getHeight();
      medium *= order.getHeight();

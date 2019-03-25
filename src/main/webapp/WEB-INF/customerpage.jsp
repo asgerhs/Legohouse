@@ -4,7 +4,10 @@
     Author     : kasper
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="DBAccess.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% List<Order> orders = (List<Order>) session.getAttribute("orders"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,11 +25,6 @@
                         <br>Go to shop<br>
                         <input type="submit" value="Shop">
                     </form>
-                    <form name="Orders" action="FrontController" method="POST">
-                        <input type="hidden" name="command" value="ShowOrder">
-                        <br>See your order<br>
-                        <input type="submit" value="See Orders"
-                    </form>
                 </td>
         </table>
         
@@ -38,12 +36,20 @@
                     <th scope="col">Length</th>
                     <th scope="col">Width</th>
                     <th scope="col">height</th>
+                    <th scope="col">Show</th>
                 </tr>
             </thead>
             <tbody>
-            <td></td>
-            <td></td>
-            <td></td>
+                <%for(Order o : orders){%>
+                <tr>
+            <td><%= o.getId() %></td>
+            <td><%= o.getLength() %></td>
+            <td><%= o.getWidth() %></td>
+            <td><%= o.getHeight() %></td>
+                </tr>
+            <% }%>
+            
+            
         </tbody>
     </table>
 </body>

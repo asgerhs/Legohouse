@@ -19,10 +19,11 @@ import javax.servlet.http.HttpSession;
  */
 public class ShowAllOrders extends Command {
     
-    LogicFacade fc = new LogicFacade();
+    
     
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+        LogicFacade fc = new LogicFacade();
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         List<Order> orders = new ArrayList();

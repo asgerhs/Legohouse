@@ -35,55 +35,78 @@ import javax.servlet.http.HttpServletRequest;
 <span class="nc" id="L35">            ex.printStackTrace();</span>
 <span class="nc" id="L36">        }</span>
 <span class="nc" id="L37">    }</span>
+    
+    public static List&lt;Order&gt; getAllOrders() throws SQLException, ClassNotFoundException{
+<span class="nc" id="L40">        List&lt;Order&gt; orders = new ArrayList();</span>
+        try{
+<span class="nc" id="L42">            Connection con = Connector.connection();</span>
+<span class="nc" id="L43">            String SQL = &quot;SELECT * FROM Orders;&quot;;</span>
+<span class="nc" id="L44">            PreparedStatement ps = con.prepareStatement(SQL);</span>
+<span class="nc" id="L45">            ResultSet rs = ps.executeQuery();</span>
+            
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            while(rs.next()){</span>
+<span class="nc" id="L48">                Order order = new Order(</span>
+<span class="nc" id="L49">                        rs.getInt(&quot;userID&quot;), </span>
+<span class="nc" id="L50">                        rs.getInt(&quot;length&quot;), </span>
+<span class="nc" id="L51">                        rs.getInt(&quot;width&quot;), </span>
+<span class="nc" id="L52">                        rs.getInt(&quot;height&quot;));</span>
+<span class="nc" id="L53">                order.setId(rs.getInt(&quot;orderID&quot;));</span>
+<span class="nc" id="L54">                orders.add(order);</span>
+<span class="nc" id="L55">            }</span>
+<span class="nc" id="L56">        }catch(SQLException ex){</span>
+<span class="nc" id="L57">            ex.printStackTrace();</span>
+<span class="nc" id="L58">        }</span>
+<span class="nc" id="L59">        return orders;</span>
+    }
 
     public static List&lt;Order&gt; getOrderByUserID(int userID) throws ClassNotFoundException, SQLException {
-<span class="nc" id="L40">        List&lt;Order&gt; orders = new ArrayList();</span>
+<span class="nc" id="L63">        List&lt;Order&gt; orders = new ArrayList();</span>
         try {
-<span class="nc" id="L42">            Connection con = Connector.connection();</span>
-<span class="nc" id="L43">            String SQL = &quot;SELECT * FROM Orders where userID = ?;&quot;;</span>
-<span class="nc" id="L44">            PreparedStatement ps = con.prepareStatement(SQL);</span>
-<span class="nc" id="L45">            ps.setInt(1, userID);</span>
-<span class="nc" id="L46">            ResultSet rs = ps.executeQuery();</span>
+<span class="nc" id="L65">            Connection con = Connector.connection();</span>
+<span class="nc" id="L66">            String SQL = &quot;SELECT * FROM Orders where userID = ?;&quot;;</span>
+<span class="nc" id="L67">            PreparedStatement ps = con.prepareStatement(SQL);</span>
+<span class="nc" id="L68">            ps.setInt(1, userID);</span>
+<span class="nc" id="L69">            ResultSet rs = ps.executeQuery();</span>
 
-<span class="nc bnc" id="L48" title="All 2 branches missed.">            while (rs.next()) {</span>
-<span class="nc" id="L49">                Order order = new Order(</span>
-<span class="nc" id="L50">                        rs.getInt(&quot;userID&quot;),</span>
-<span class="nc" id="L51">                        rs.getInt(&quot;length&quot;),</span>
-<span class="nc" id="L52">                        rs.getInt(&quot;width&quot;),</span>
-<span class="nc" id="L53">                        rs.getInt(&quot;height&quot;));</span>
-<span class="nc" id="L54">                order.setId(rs.getInt(&quot;orderID&quot;));</span>
-<span class="nc" id="L55">                orders.add(order);</span>
-<span class="nc" id="L56">            }</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L72">                Order order = new Order(</span>
+<span class="nc" id="L73">                        rs.getInt(&quot;userID&quot;),</span>
+<span class="nc" id="L74">                        rs.getInt(&quot;length&quot;),</span>
+<span class="nc" id="L75">                        rs.getInt(&quot;width&quot;),</span>
+<span class="nc" id="L76">                        rs.getInt(&quot;height&quot;));</span>
+<span class="nc" id="L77">                order.setId(rs.getInt(&quot;orderID&quot;));</span>
+<span class="nc" id="L78">                orders.add(order);</span>
+<span class="nc" id="L79">            }</span>
 
-<span class="nc" id="L58">        } catch (SQLException | ClassNotFoundException ex) {</span>
-<span class="nc" id="L59">            ex.printStackTrace();</span>
-<span class="nc" id="L60">        }</span>
-<span class="nc" id="L61">        return orders;</span>
+<span class="nc" id="L81">        } catch (SQLException | ClassNotFoundException ex) {</span>
+<span class="nc" id="L82">            ex.printStackTrace();</span>
+<span class="nc" id="L83">        }</span>
+<span class="nc" id="L84">        return orders;</span>
     }
 
     public static Order getOrderByOrderID(int orderID) throws ClassNotFoundException, SQLException {
-<span class="nc" id="L65">        Order order = null;</span>
+<span class="nc" id="L88">        Order order = null;</span>
         try {
 
-<span class="nc" id="L68">            Connection con = Connector.connection();</span>
-<span class="nc" id="L69">            String SQL = &quot;SELECT * FROM Orders where orderID = ?;&quot;;</span>
-<span class="nc" id="L70">            PreparedStatement ps = con.prepareStatement(SQL);</span>
-<span class="nc" id="L71">            ps.setInt(1, orderID);</span>
-<span class="nc" id="L72">            ResultSet rs = ps.executeQuery();</span>
+<span class="nc" id="L91">            Connection con = Connector.connection();</span>
+<span class="nc" id="L92">            String SQL = &quot;SELECT * FROM Orders where orderID = ?;&quot;;</span>
+<span class="nc" id="L93">            PreparedStatement ps = con.prepareStatement(SQL);</span>
+<span class="nc" id="L94">            ps.setInt(1, orderID);</span>
+<span class="nc" id="L95">            ResultSet rs = ps.executeQuery();</span>
 
-<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (rs.next()) {</span>
-<span class="nc" id="L75">                order = new Order(</span>
-<span class="nc" id="L76">                        rs.getInt(&quot;userID&quot;),</span>
-<span class="nc" id="L77">                        rs.getInt(&quot;length&quot;),</span>
-<span class="nc" id="L78">                        rs.getInt(&quot;width&quot;),</span>
-<span class="nc" id="L79">                        rs.getInt(&quot;height&quot;));</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (rs.next()) {</span>
+<span class="nc" id="L98">                order = new Order(</span>
+<span class="nc" id="L99">                        rs.getInt(&quot;userID&quot;),</span>
+<span class="nc" id="L100">                        rs.getInt(&quot;length&quot;),</span>
+<span class="nc" id="L101">                        rs.getInt(&quot;width&quot;),</span>
+<span class="nc" id="L102">                        rs.getInt(&quot;height&quot;));</span>
             }
 
-<span class="nc" id="L82">        } catch (SQLException ex) {</span>
-<span class="nc" id="L83">            ex.printStackTrace();</span>
-<span class="nc" id="L84">        }</span>
+<span class="nc" id="L105">        } catch (SQLException ex) {</span>
+<span class="nc" id="L106">            ex.printStackTrace();</span>
+<span class="nc" id="L107">        }</span>
 
-<span class="nc" id="L86">        return order;</span>
+<span class="nc" id="L109">        return order;</span>
     }
 
 }

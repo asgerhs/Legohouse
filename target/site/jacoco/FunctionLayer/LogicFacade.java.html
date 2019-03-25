@@ -36,6 +36,10 @@ import java.util.List;
     public static List&lt;Order&gt; getOrderByUserID(int UserID) throws ClassNotFoundException, SQLException{
 <span class="nc" id="L37">        return OrderMapper.getOrderByUserID(UserID);</span>
     }
+    
+    public static List&lt;Order&gt; getAllOrders() throws SQLException, ClassNotFoundException{
+<span class="nc" id="L41">        return OrderMapper.getAllOrders();</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

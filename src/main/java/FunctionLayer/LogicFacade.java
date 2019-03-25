@@ -36,5 +36,9 @@ public class LogicFacade {
     public static List<Order> getOrderByUserID(int UserID) throws ClassNotFoundException, SQLException{
         return OrderMapper.getOrderByUserID(UserID);
     }
+    
+    public static List<Order> getAllOrders() throws SQLException, ClassNotFoundException{
+        return OrderMapper.getAllOrders();
+    }
 
 }
