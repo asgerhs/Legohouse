@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LogicFacade.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LogInSample</a> &gt; <a href="index.source.html" class="el_package">FunctionLayer</a> &gt; <span class="el_source">LogicFacade.java</span></div><h1>LogicFacade.java</h1><pre class="source lang-java linenums">package FunctionLayer;
+
+import DBAccess.User;
+import DBAccess.Order;
+import DBAccess.OrderMapper;
+import DBAccess.UserMapper;
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * The purpose of LogicFacade is to...
+ * @author kasper
+ */
+<span class="nc" id="L14">public class LogicFacade {</span>
+
+    public static User login( String email, String password ) throws LoginSampleException {
+<span class="nc" id="L17">        return UserMapper.login( email, password );</span>
+    } 
+
+    public static User createUser( String email, String password ) throws LoginSampleException {
+<span class="nc" id="L21">        User user = new User(email, password, &quot;customer&quot;);</span>
+<span class="nc" id="L22">        UserMapper.createUser( user );</span>
+<span class="nc" id="L23">        return user;</span>
+    }
+    
+    public static Order createOrder(int userID, int length, int width, int height) throws LoginSampleException, ClassNotFoundException{
+<span class="nc" id="L27">        Order order = new Order(userID, length, width, height);</span>
+<span class="nc" id="L28">        OrderMapper.createOrder(order);</span>
+<span class="nc" id="L29">        return order;</span>
+    }
+    
+    public static Order getOrderByOrderID(int orderID) throws ClassNotFoundException, SQLException{
+<span class="nc" id="L33">       return OrderMapper.getOrderByOrderID(orderID);</span>
+    }
+    
+    public static List&lt;Order&gt; getOrderByUserID(int UserID) throws ClassNotFoundException, SQLException{
+<span class="nc" id="L37">        return OrderMapper.getOrderByUserID(UserID);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
