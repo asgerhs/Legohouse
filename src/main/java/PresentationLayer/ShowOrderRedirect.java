@@ -30,7 +30,7 @@ public class ShowOrderRedirect extends Command {
         }catch(SQLException | ClassNotFoundException ex){
             ex.printStackTrace();
         } 
-        return "ShowOrder";
+        return "ShowOrderLine";
     }
 
 }

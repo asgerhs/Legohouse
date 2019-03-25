@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Customer home page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     </head>
     <body>
         <h1>Hello <%=request.getParameter("email")%> </h1>
@@ -46,6 +47,7 @@
             <td><%= o.getLength() %></td>
             <td><%= o.getWidth() %></td>
             <td><%= o.getHeight() %></td>
+            <td> <a href="FrontController?command=ShowOrderLine&orderID=<%=o.getId()%>"><button>Vis Stykliste</button></a><td>
                 </tr>
             <% }%>
             
