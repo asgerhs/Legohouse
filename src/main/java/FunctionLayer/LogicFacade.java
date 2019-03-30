@@ -22,7 +22,7 @@ public class LogicFacade {
         UserMapper.createUser( user );
         return user;
     }
-    
+    //Den her metode opretter en ordre.
     public static Order createOrder(int userID, int length, int width, int height) throws LoginSampleException, ClassNotFoundException{
         Order order = new Order(userID, length, width, height);
         OrderMapper.createOrder(order);
